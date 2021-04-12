@@ -1,0 +1,1 @@
+pg_config = {'user':'jean','password':'db2021','dbname':'db3','dbport':8082}
