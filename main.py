@@ -13,6 +13,14 @@ from handler.blocks import BaseBlock
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/Pichon',methods=['GET'])
+def getApp():
+    if request.method == 'GET':
+        return "Hello"
+    else:
+        return jsonify("Method not Allowed"), 405
+
+
 #User
 
 #Register
@@ -203,4 +211,4 @@ def handle_getUnlikes(mid):
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(debug=True)
