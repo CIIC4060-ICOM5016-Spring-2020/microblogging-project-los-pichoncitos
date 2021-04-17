@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-# gt
+# from flask_cors import CORS
 
 from handler.reply import BaseReply
 from handler.shares import BaseShare

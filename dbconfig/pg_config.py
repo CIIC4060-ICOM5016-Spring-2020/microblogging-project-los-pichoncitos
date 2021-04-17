@@ -1,1 +1,1 @@
-pg_config = {'user':'jean','password':'db2021','dbname':'db3','dbport':8082}
+pg_config = {'user':'fkbaipfytvhpid','password':'8507c41bdfae4a530701e149a3ee8ab684296c6482d4ead1304133bada2e4834','dbname':'d99dv2t020arv9','dbport':5432}
