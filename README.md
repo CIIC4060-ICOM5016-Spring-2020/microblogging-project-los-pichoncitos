@@ -9,7 +9,7 @@ Phase 1:
 ER video -  https://youtu.be/QSqTrDlyP7M
 
 Phase 2:
-REST API link: https://pichon2021.herokuapp.com/Pichon
+REST API link: https://pichon2021.herokuapp.com/Pichon/
 
 Credentails:
  {
