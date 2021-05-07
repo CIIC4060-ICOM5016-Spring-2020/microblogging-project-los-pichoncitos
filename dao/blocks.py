@@ -41,9 +41,9 @@ class BlockDAO:
         self.conn.commit()
         return affected_rows != 0
 
-    def checkBlocked(self, uid, blockingid):
+    def checkBlocked(self, id, blockingid):
         cursor = self.conn.cursor()
-        query = "select uid from blocks where blockingid = %s and uid = %s;"
-        cursor.execute(query, (uid, blockingid,))
+        query = "select uid from blocks where iid = %s and blockingid = %s;"
+        cursor.execute(query, (id, blockingid,))
         rows = cursor.rowcount
 

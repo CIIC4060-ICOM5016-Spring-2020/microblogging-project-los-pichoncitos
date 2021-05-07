@@ -32,8 +32,6 @@ class BaseFollow:
 
     def build_map_dictFollowed(self, row):
         result = {}
-        # result['fid'] = row[0]
-        # result['uid'] = row[0]
         result['follower'] = row[0]
         return result
 
