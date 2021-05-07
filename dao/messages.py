@@ -9,7 +9,7 @@ class MessageDAO:
 
     def getAllMessages(self):
         cursor = self.conn.cursor()
-        query = "select mid, mdate, message, uid from messages;"
+        query = "select mid, message, uid from messages;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -18,15 +18,15 @@ class MessageDAO:
 
     def getMessagebyId(self, mid):
         cursor = self.conn.cursor()
-        query = "select mid,mdate,message,uid from messages where mid = %s;"
+        query = "select mid,message,uid from messages where mid = %s;"
         cursor.execute(query, (mid,))
         result = cursor.fetchone()
         return result
 
-    def insertMessage(self, mdate, message, uid):
+    def insertMessage(self, message, uid):
         cursor = self.conn.cursor()
-        query = "insert into messages (mdate, message, uid) values (%s,%s,%s) returning mid; "
-        cursor.execute(query, (mdate, message, uid))
+        query = "insert into messages (message, uid) values (%s,%s) returning mid; "
+        cursor.execute(query,  (message, uid))
         mid = cursor.fetchone()[0]
         self.conn.commit()
         return mid
