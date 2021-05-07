@@ -1,4 +1,6 @@
 from flask import jsonify, json
+
+from dao.blocks import BlockDAO
 from dao.follows import FollowDAO
 
 
@@ -37,14 +39,15 @@ class BaseFollow:
 
     def build_map_dictFollowing(self, row):
         result = {}
-        # result['fid'] = row[0]
-        # result['rid'] = row[0]
         result['follows'] = row[0]
         return result
 
     def addNewFollow(self, json, followingid):
-        # fid = json['fid']
         followerid = json['RegisteredUser']
+        daoBlock = BlockDAO
+        checkBlock = daoBlock.checkBlocked(json, followingid)
+        if checkBlock:
+            return jsonify("User is blocked"), 200
         dao = FollowDAO()
         fid = dao.insertFollow(followerid, followingid)
         result = self.build_attr_dict(followerid, followingid)
