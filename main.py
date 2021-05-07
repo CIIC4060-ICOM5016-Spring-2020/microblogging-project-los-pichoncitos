@@ -57,7 +57,7 @@ def handle_getFollow(rid):
         return jsonify("Method not Allowed"),405
 
 #Get users followed by a specific user
-@app.route('/Pichon/followedBy/<int:rid>', methods=['GET'])
+@app.route('/Pichon/followedby/<int:rid>', methods=['GET'])
 def handle_getFollowedBy(rid):
     if request.method == 'GET':
         return BaseFollow().getFollowedBy(rid)
@@ -91,7 +91,7 @@ def handle_getBlock(uid):
         return jsonify("Method not Allowed"),405
 
 #Get all users ublocked by a registered user
-@app.route('/Pichon/blockedBy/<int:uid>', methods=['GET'])
+@app.route('/Pichon/blockedby/<int:uid>', methods=['GET'])
 def handle_getBlockedBy(uid):
     if request.method == 'GET':
         return BaseBlock().getBlockedBy(uid)
