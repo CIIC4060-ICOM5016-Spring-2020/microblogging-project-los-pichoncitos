@@ -33,19 +33,19 @@ class BaseBlock:
         result = {}
         # result['fid'] = row[0]
         # result['uid'] = row[0]
-        result['uid'] = row[0]
+        result['blockedBy'] = row[0]
         return result
 
     def build_map_dictBlocking(self, row):
         result = {}
         # result['fid'] = row[0]
         # result['rid'] = row[0]
-        result['uid'] = row[0]
+        result['blocking'] = row[0]
         return result
 
     def addNewBlock(self, json, blockingid):
         # fid = json['fid']
-        uid = json['uid']
+        uid = json['RegisteredUser']
         if uid == blockingid:
             return jsonify("ERROR, same userid"), 404
         dao = BlockDAO()
@@ -54,7 +54,7 @@ class BaseBlock:
         return jsonify(result), 201
 
     def deleteBlock(self, json, blockingid):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         if uid == blockingid:
             return jsonify("ERROR, same userid"), 404
         dao = BlockDAO()

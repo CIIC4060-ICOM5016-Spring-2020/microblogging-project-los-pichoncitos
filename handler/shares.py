@@ -14,20 +14,20 @@ class BaseShare:
 
     def build_attr_dict(self, uid,mid):
         result = {}
-        result['uid'] = uid
-        result['mid'] = mid
+        result['RegisteredUser'] = uid
+        result['sharing'] = mid
         return result
 
     def build_map_dict(self, row):
         result = {}
-        result['uid'] = row[1]
-        result['mid'] = row[2]
+        result['RegisteredUser'] = row[1]
+        result['sharing'] = row[2]
         return result
 
 
     def addNewShare(self, json):
-        uid = json['uid']
-        mid = json['mid']
+        uid = json['RegisteredUser']
+        mid = json['sharing']
         dao = SharesDAO()
         id =dao.insertShare(uid, mid)
         result = self.build_attr_dict(uid,mid)

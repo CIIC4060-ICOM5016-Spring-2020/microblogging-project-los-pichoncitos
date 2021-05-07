@@ -26,33 +26,33 @@ class BaseFollow:
         result = {}
         # result['fid'] = fid
         result['followingid'] = followingid
-        result['followerid'] = followerid
+        result['RegisteredUser'] = followerid
         return result
 
     def build_map_dictFollowed(self, row):
         result = {}
         # result['fid'] = row[0]
         # result['uid'] = row[0]
-        result['followerid'] = row[0]
+        result['followedBy'] = row[0]
         return result
 
     def build_map_dictFollowing(self, row):
         result = {}
         # result['fid'] = row[0]
         # result['rid'] = row[0]
-        result['followingid'] = row[0]
+        result['follows'] = row[0]
         return result
 
-    def addNewFollow(self, json, followerid):
+    def addNewFollow(self, json, followingid):
         # fid = json['fid']
-        followingid = json['followingid']
+        followerid = json['registeredUser']
         dao = FollowDAO()
         fid = dao.insertFollow(followerid, followingid)
         result = self.build_attr_dict(followerid, followingid)
         return jsonify(result), 201
 
-    def deleteFollow(self, json, followingid):
-        followerid = json['followerid']
+    def deleteFollow(self, json, followerid):
+        followingid = json['registeredUser']
         if followerid == followingid:
             return jsonify("ERROR, same userid"), 404
         dao = FollowDAO()

@@ -14,18 +14,18 @@ class BaseMessage:
 
     def build_attr_dict(self, mid, mdate, message, uid):
         result = {}
-        result['mid'] = mid
-        result['mdate'] = mdate
-        result['message'] = message
-        result['uid'] = uid
+        result['ID'] = mid
+        result['Text'] = message
+        result['RegisteredUser'] = uid
+        result['Date'] = mdate
         return result
 
     def build_map_dict(self, row):
         result = {}
-        result['mid'] = row[0]
-        result['mdate'] = row[1]
-        result['message'] = row[2]
-        result['uid'] = row[3]
+        result['ID'] = row[0]
+        result['Text'] = row[1]
+        result['RegisteredUser'] = row[2]
+        result['Date'] = row[3]
         return result
 
     def getMessagebyId(self, uid):
@@ -38,9 +38,9 @@ class BaseMessage:
             return jsonify(result)
 
     def addNewMessage(self, json):
-        mdate = json['mdate']
-        message = json['message']
-        uid = json['uid']
+        message = json['Text']
+        uid = json['RegisteredUser']
+        mdate = json['Date']
         dao = MessageDAO()
         mid = dao.insertMessage(mdate,message, uid)
         result = self.build_attr_dict(mid, mdate, message, uid)

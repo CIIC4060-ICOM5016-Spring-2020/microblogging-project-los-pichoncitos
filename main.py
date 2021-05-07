@@ -21,15 +21,18 @@ def getApp():
         return jsonify("Method not Allowed"), 405
 
 
-#User
+#USER
 
 #Register
 @app.route('/Pichon/users', methods=['GET', 'POST'])
 def handle_getUser():
     if request.method == 'POST':
         return BaseUser().addNewUser(request.json)
-    else:
+    elif request.method == 'GET':
         return BaseUser().getAllUsers()
+    else:
+        return jsonify("Method not Allowed"),405
+
 
 #Get by id
 @app.route('/Pichon/users/<int:uid>', methods=['GET','PUT','DELETE'])
@@ -43,52 +46,6 @@ def handle_getUserbyId(uid):
     else:
         return jsonify("Method not Allowed"),405
 
-#Posts
-
-#Post message
-@app.route('/Pichon/posts', methods=['POST'])
-def handle_getMessage():
-    if request.method == 'POST':
-        return BaseMessage().addNewMessage(request.json)
-    else:
-        return jsonify("Method not Allowed"),405
-
-#Reply message
-@app.route('/Pichon/reply', methods=['POST','GET'])
-def handle_replyMessage():
-    if request.method == 'POST':
-        return BaseReply().addNewReply(request.json)
-    elif request.method == 'GET':
-        return BaseReply().getAllReply()
-    else:
-        return jsonify("Method not Allowed"),405
-
-#Share message
-@app.route('/Pichon/share', methods=['POST','GET'])
-def handle_shareMessage():
-    if request.method == 'POST':
-        return BaseShare().addNewShare(request.json)
-    elif request.method == 'GET':
-        return BaseShare().getAllShares()
-    else:
-        return jsonify("Method not Allowed"),405
-
-#Get message by id
-@app.route('/Pichon/msg/<int:mid>', methods=['GET','PUT','DELETE'])
-def handle_getMessagebyId(mid):
-    if request.method == 'GET':
-        return BaseMessage().getMessagebyId(mid)
-    else:
-        return jsonify("Method not Allowed"),405
-
-#Get all messages
-@app.route('/Pichon/msg', methods=['GET'])
-def handle_getAllMessages():
-    if request.method == 'GET':
-        return BaseMessage().getAllMessages()
-    else:
-        return jsonify("Method not Allowed"),405
-
 #FOLLOW
 
 #Follow a user
@@ -99,19 +56,19 @@ def handle_getFollow(rid):
     else:
         return jsonify("Method not Allowed"),405
 
-#Get users following a specific user
-@app.route('/Pichon/follows/<int:uid>', methods=['GET'])
-def handle_getFollows(uid):
-    if request.method == 'GET':
-        return BaseFollow().getFollowing(uid)
-    else:
-        return jsonify("Method not Allowed"),405
-
 #Get users followed by a specific user
 @app.route('/Pichon/followedBy/<int:rid>', methods=['GET'])
 def handle_getFollowedBy(rid):
     if request.method == 'GET':
         return BaseFollow().getFollowedBy(rid)
+    else:
+        return jsonify("Method not Allowed"),405
+
+#Get users following a specific user
+@app.route('/Pichon/follows/<int:uid>', methods=['GET'])
+def handle_getFollows(uid):
+    if request.method == 'GET':
+        return BaseFollow().getFollowing(uid)
     else:
         return jsonify("Method not Allowed"),405
 
@@ -154,6 +111,52 @@ def handle_getBlocking(uid):
 def handle_getUnblock(uid):
     if request.method == 'POST':
         return BaseBlock().deleteBlock(request.json, uid)
+    else:
+        return jsonify("Method not Allowed"),405
+
+#MESSAGES
+
+#Post message
+@app.route('/Pichon/posts', methods=['POST'])
+def handle_getMessage():
+    if request.method == 'POST':
+        return BaseMessage().addNewMessage(request.json)
+    else:
+        return jsonify("Method not Allowed"),405
+
+#Reply message
+@app.route('/Pichon/reply', methods=['POST','GET'])
+def handle_replyMessage():
+    if request.method == 'POST':
+        return BaseReply().addNewReply(request.json)
+    elif request.method == 'GET':
+        return BaseReply().getAllReply()
+    else:
+        return jsonify("Method not Allowed"),405
+
+#Share message
+@app.route('/Pichon/share', methods=['POST','GET'])
+def handle_shareMessage():
+    if request.method == 'POST':
+        return BaseShare().addNewShare(request.json)
+    elif request.method == 'GET':
+        return BaseShare().getAllShares()
+    else:
+        return jsonify("Method not Allowed"),405
+
+#Get message by id
+@app.route('/Pichon/msg/<int:mid>', methods=['GET','PUT','DELETE'])
+def handle_getMessagebyId(mid):
+    if request.method == 'GET':
+        return BaseMessage().getMessagebyId(mid)
+    else:
+        return jsonify("Method not Allowed"),405
+
+#Get all messages
+@app.route('/Pichon/msg', methods=['GET'])
+def handle_getAllMessages():
+    if request.method == 'GET':
+        return BaseMessage().getAllMessages()
     else:
         return jsonify("Method not Allowed"),405
 

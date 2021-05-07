@@ -6,14 +6,14 @@ class BaseReact:
 
     def build_attr_dict(self, uid, mid, isLiked):
         result = {}
-        result['uid'] = uid
+        result['RegisteredUser'] = uid
         result['mid'] = mid
         result['isLiked'] = isLiked
         return result
 
     def build_map_dict(self, row):
         result = {}
-        result['uid'] = row[0]
+        result['RegisteredUser'] = row[0]
         return result
 
     def getLikesById(self, mid):
@@ -35,7 +35,7 @@ class BaseReact:
         return jsonify(result)
 
     def insertLike(self, json, mid):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         isLiked = True
         dao = ReactDAO()
         uid = dao.insertReact(uid, mid, isLiked)
@@ -43,7 +43,7 @@ class BaseReact:
         return jsonify(result), 201
 
     def insertUnlike(self, json, mid):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         isLiked = False
         dao = ReactDAO()
         uid = dao.insertReact(uid, mid, isLiked)
@@ -52,7 +52,7 @@ class BaseReact:
 
 
     def deleteLike(self, json, mid):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         dao = ReactDAO()
         result = dao.deleteLike(uid, mid)
         if result:
@@ -61,7 +61,7 @@ class BaseReact:
             return jsonify("NOT FOUND"), 404
 
     def deleteUnlike(self, json, mid):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         dao = ReactDAO()
         result = dao.deleteUnlike(uid, mid)
         if result:
