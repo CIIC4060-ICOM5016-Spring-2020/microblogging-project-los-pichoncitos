@@ -1,8 +1,14 @@
 from flask import jsonify
 from dao.users import UserDAO
+import psycopg2
+from dbconfig.pg_config import pg_config
 
 
 class BaseUser:
+    def __init__(self):
+        connection_url = "host=%s dbname=%s user=%s password=%s port=%s" % (pg_config['host'], pg_config['dbname'], pg_config['user'], pg_config['password'], pg_config['dbport'])
+        self.conn = psycopg2.connect(connection_url)
+
     def getAllUsers(self):
         dao = UserDAO()
         user_list = dao.getAllUsers()
@@ -49,6 +55,10 @@ class BaseUser:
         username = json['username']
         password = json['password']
         dao = UserDAO()
+        checkUser = dao.checkUser(email, username)
+        
+        if checkUser:
+            return jsonify("Username or Email are already used by an existing user"), 200
         uid = dao.insertUser(first_name, last_name, email, username, password)
         result = self.build_attr_dict(uid, first_name, last_name, email, username,  password)
         return jsonify(result), 201

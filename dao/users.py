@@ -49,3 +49,11 @@ class UserDAO:
         # if affected rows == 0, the part was not found and hence not deleted
         # otherwise, it was deleted, so check if affected_rows != 0
         return affected_rows != 0
+
+    def checkUser(self, email, username):
+        cursor = self.conn.cursor()
+        query = "select uid from users where email=%s or username=%s;"
+        cursor.execute(query, (email,username))
+        rows = cursor.rowcount
+
+        return rows>=1
