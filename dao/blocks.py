@@ -41,11 +41,15 @@ class BlockDAO:
         self.conn.commit()
         return affected_rows != 0
 
-    def checkBlocked(self, id, blockingid):
+    def checkBlocked(self, uid, blockingid):
         cursor = self.conn.cursor()
-        query = "select bid from blocks where (blockingid = %s and uid = %s) or (uid = %s and blockingid = %s);"
-        cursor.execute(query, (id, blockingid,))
+        query = "select bid from blocks where blockingid = %s and uid = %s uid = %s and blockingid = %s;"
+        cursor.execute(query, (uid, blockingid,))
         rows = cursor.rowcount
 
-        return rows >= 1
+        query = "select bid from blocks where uid = %s and blockingid = %s;"
+        cursor.execute(query, (uid, blockingid,))
+        rows2 = cursor.rowcount
+
+        return rows >= 1 or rows2>= 1
 
