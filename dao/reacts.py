@@ -53,8 +53,8 @@ class ReactDAO:
 
     def checkBlocked(self, uid,  mid):
         cursor = self.conn.cursor()
-        query = "select bid from blocks inner join messages on blocks.uid = messages.uid where blocks.uid = %s and messages.uid = %s;"
-        cursor.execute(query, (uid, mid,))
+        query = "select bid from blocks inner join messages on blocks.uid = messages.uid where (blocks.uid = %s and messages.uid = %s) or (messages.uid = %s and blocks.uid = %s);"
+        cursor.execute(query, (uid, mid,uid,mid))
         rows = cursor.rowcount
         # if affected rows == 0, the part was not found and hence not deleted
         # otherwise, it was deleted, so check if affected_rows != 0
