@@ -45,4 +45,4 @@ class FollowDAO:
         query = "select fid from follows where followerid= %s and followingid = %s;"
         cursor.execute(query, (followerid, followingid,))
         rows = cursor.rowcount
-        return rows >= 0
+        return rows >= 1
