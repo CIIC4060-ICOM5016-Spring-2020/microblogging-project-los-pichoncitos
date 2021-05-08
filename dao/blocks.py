@@ -43,9 +43,9 @@ class BlockDAO:
 
     def checkBlocked(self, id, blockingid):
         cursor = self.conn.cursor()
-        query = "select bid from blocks where id = %s and blockingid = %s;"
-        cursor.execute(query, (id, blockingid,))
+        query = "select bid from blocks where blockingid = %s and uid = %s;"
+        cursor.execute(query, (id, blockingid))
         rows = cursor.rowcount
 
-        return rows>=1
+        return rows >= 1
 
