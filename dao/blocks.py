@@ -43,7 +43,7 @@ class BlockDAO:
 
     def checkBlocked(self, id, blockingid):
         cursor = self.conn.cursor()
-        query = "select bid from blocks where (blockingid = 2 and uid = 4) or (uid = 2 and blockingid = 4);"
+        query = "select bid from blocks where (blockingid = %s and uid = %s) or (uid = %s and blockingid = %s);"
         cursor.execute(query, (id, blockingid,))
         rows = cursor.rowcount
 
