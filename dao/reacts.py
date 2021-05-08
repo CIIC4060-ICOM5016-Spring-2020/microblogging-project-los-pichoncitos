@@ -59,3 +59,21 @@ class ReactDAO:
         # if affected rows == 0, the part was not found and hence not deleted
         # otherwise, it was deleted, so check if affected_rows != 0
         return rows != 0
+
+    def checkLike(self, uid, mid):
+        cursor = self.conn.cursor()
+        query = "select reid from reacts where uid = %s and mid = %s and  isLiked = True;"
+        cursor.execute(query, (uid, mid))
+        rows = cursor.rowcount
+        # if affected rows == 0, the part was not found and hence not deleted
+        # otherwise, it was deleted, so check if affected_rows != 0
+        return rows != 0
+
+    def checkUnlike(self, uid, mid):
+        cursor = self.conn.cursor()
+        query = "select reid from reacts where uid = %s and mid = %s and  isLiked = False;"
+        cursor.execute(query, (uid, mid))
+        rows = cursor.rowcount
+        # if affected rows == 0, the part was not found and hence not deleted
+        # otherwise, it was deleted, so check if affected_rows != 0
+        return rows != 0

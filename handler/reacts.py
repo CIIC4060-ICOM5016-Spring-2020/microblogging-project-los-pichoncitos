@@ -40,7 +40,10 @@ class BaseReact:
         dao = ReactDAO()
         checkBlock = dao.checkBlocked(uid, mid)
         if checkBlock:
-            return jsonify("Registered user has message's user blocked, can't react to message"), 200
+            return jsonify("BLOCKED, can't react to message"), 200
+        checkLike = dao.checkLike(uid,mid)
+        if checkLike:
+            return jsonify("Already liked"), 200
         reid = dao.insertReact(uid, mid, isLiked)
         result = self.build_attr_dict(uid, mid, isLiked)
         return jsonify(result), 201
@@ -49,6 +52,12 @@ class BaseReact:
         uid = json['RegisteredUser']
         isLiked = False
         dao = ReactDAO()
+        checkBlock = dao.checkBlocked(uid, mid)
+        if checkBlock:
+            return jsonify("BLOCKED, can't react to message"), 200
+        checkUnlike = dao.checkUnlike(uid, mid)
+        if checkUnlike:
+            return jsonify("Already unliked"), 200
         reid = dao.insertReact(uid, mid, isLiked)
         result = self.build_attr_dict(uid, mid, isLiked)
         return jsonify(result), 201
