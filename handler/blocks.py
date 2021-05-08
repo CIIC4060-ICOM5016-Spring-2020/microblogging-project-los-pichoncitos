@@ -61,7 +61,7 @@ class BaseBlock:
         if uid == blockingid:
             return jsonify("ERROR, same userid"), 404
         dao = BlockDAO()
-        result = dao.insertUnblock(uid, blockingid)
+        result = dao.insertUnblock(blockingid, uid)
         if result:
             return jsonify("UNBLOCKED"), 200
         else:

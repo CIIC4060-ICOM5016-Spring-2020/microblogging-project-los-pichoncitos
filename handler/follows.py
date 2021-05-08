@@ -42,6 +42,9 @@ class BaseFollow:
 
     def addNewFollow(self, json, followingid):
         followerid = json['RegisteredUser']
+
+        if followingid == followerid:
+            return jsonify("ERROR, same userid"), 200
         daoBlock = BlockDAO()
         checkBlock = daoBlock.checkBlocked(followerid, followingid)
         if checkBlock:
