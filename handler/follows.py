@@ -47,6 +47,7 @@ class BaseFollow:
         if checkBlock:
             return jsonify("User is blocked"), 200
         dao = FollowDAO()
+        checkFollow = dao.checkFollow(followerid, followingid)
         fid = dao.insertFollow(followerid, followingid)
         result = self.build_attr_dict(followerid, followingid)
         return jsonify(result), 201

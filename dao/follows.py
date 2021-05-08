@@ -39,3 +39,10 @@ class FollowDAO:
         # if affected rows == 0, the part was not found and hence not deleted
         # otherwise, it was deleted, so check if affected_rows != 0
         return affected_rows != 0
+
+    def checkFollow(self, followerid, followingid):
+        cursor = self.conn.cursor()
+        query = "select fid from follows where followerid= %s and followingid = %s;"
+        cursor.execute(query, (followerid, followingid,))
+        rows = cursor.rowcount
+        return rows >= 0
