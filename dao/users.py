@@ -53,7 +53,7 @@ class UserDAO:
     def checkUser(self, email, username):
         cursor = self.conn.cursor()
         query = "select uid from users where email=%s or username=%s;"
-        cursor.execute(query, (email,username))
+        cursor.execute(query, (email, username))
         rows = cursor.rowcount
 
-        return rows>=1
+        return rows >=1
