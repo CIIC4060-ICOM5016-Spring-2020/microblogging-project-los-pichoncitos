@@ -61,7 +61,7 @@ class BaseFollow:
         if followerid == followingid:
             return jsonify("ERROR, same userid"), 404
         dao = FollowDAO()
-        result = dao.deleteFollow(followerid, followingid)
+        result = dao.deleteFollow(followingid, followerid)
         if result:
             return jsonify("UNFOLLOWED"), 200
         else:
