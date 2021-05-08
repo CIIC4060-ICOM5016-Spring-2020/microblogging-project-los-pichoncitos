@@ -9,7 +9,7 @@ class ReactDAO:
 
     def insertReact(self, uid, mid, isLiked):
         cursor = self.conn.cursor()
-        query = "insert into reacts (uid, mid, isLiked) values (%s,%s,%s) returning rid;"
+        query = "insert into reacts (uid, mid, isLiked) values (%s,%s,%s) returning reid;"
         cursor.execute(query, (uid, mid, isLiked,))
         reactid = cursor.fetchone()[0]
         self.conn.commit()
