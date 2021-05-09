@@ -89,7 +89,7 @@ class MessageDAO:
     def checkBlocked(self, uid, mid):
         cursor = self.conn.cursor()
         query = "select uid from messages where mid = %s;"
-        cursor.execute(query, (mid))
+        cursor.execute(query, (mid,))
         id = cursor.fetchone()[0]
         query = "select bid from blocks where (uid = %s and blockingid = %s) or (blockingid = %s and uid = %s);"
         cursor.execute(query, (uid, id, uid, id))
