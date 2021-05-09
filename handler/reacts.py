@@ -44,6 +44,9 @@ class BaseReact:
         checkLike = dao.checkLike(uid,mid)
         if checkLike:
             return jsonify("Already liked"), 200
+        checkUnlike = dao.checkUnlike(uid,mid)
+        if checkUnlike:
+            dao.deleteUnlike(uid, mid)
         reid = dao.insertReact(uid, mid, isLiked)
         result = self.build_attr_dict(uid, mid, isLiked)
         return jsonify(result), 201
@@ -58,6 +61,9 @@ class BaseReact:
         checkUnlike = dao.checkUnlike(uid, mid)
         if checkUnlike:
             return jsonify("Already unliked"), 200
+        checkLike = dao.checkLike(uid,mid)
+        if checkLike:
+            dao.deleteLike(uid, mid)
         reid = dao.insertReact(uid, mid, isLiked)
         result = self.build_attr_dict(uid, mid, isLiked)
         return jsonify(result), 201

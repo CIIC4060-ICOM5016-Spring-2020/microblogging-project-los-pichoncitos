@@ -95,7 +95,7 @@ class BaseMessage:
         dao = MessageDAO()
         checkBlock = dao.checkBlocked(uid, rid)
         if checkBlock:
-            return jsonify("BLOCKED, can't share message"), 200
+            return jsonify("BLOCKED, can't reply message"), 200
         mid = dao.insertReply(message, uid, rid, isShare, isReply)
         result = self.build_attr_dict_reply(mid, message, uid, rid)
         return jsonify(result), 201

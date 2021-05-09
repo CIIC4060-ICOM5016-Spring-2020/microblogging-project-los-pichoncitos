@@ -25,8 +25,8 @@ class BaseBlock:
     def build_attr_dict(self, blockingid, uid):
         result = {}
         # result['fid'] = fid
-        result['blockingid'] = blockingid
-        result['uid'] = uid
+        result['blocking'] = blockingid
+        result['RegisteredUser'] = uid
         return result
 
     def build_map_dictBlocked(self, row):
