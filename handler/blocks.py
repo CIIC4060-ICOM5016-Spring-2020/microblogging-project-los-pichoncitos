@@ -11,6 +11,10 @@ class BaseBlock:
         for row in follow_list:
             obj = self.build_map_dictBlocked(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("Doesn't have a user blocked"), 404
+
         return jsonify(result)
 
     def getBlocking(self,uid):
@@ -20,6 +24,10 @@ class BaseBlock:
         for row in follow_list:
             obj = self.build_map_dictBlocking(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("Is not blocked by a user"), 404
+
         return jsonify(result)
 
     def build_attr_dict(self, blockingid, uid):

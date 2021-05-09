@@ -19,6 +19,9 @@ class BaseMessage:
             obj = self.build_map_dict_share(row)
             result.append(obj)
 
+        if len(result) == 0:
+            return jsonify("No messages posted"), 404
+
         return jsonify(result)
 
     def build_attr_dict(self, mid, message, uid):

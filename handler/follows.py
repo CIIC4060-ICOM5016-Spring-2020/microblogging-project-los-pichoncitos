@@ -13,6 +13,10 @@ class BaseFollow:
         for row in follow_list:
             obj = self.build_map_dictFollowed(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("Doesn't follow other users"), 404
+
         return jsonify(result)
 
     def getFollowing(self,followerid):
@@ -22,6 +26,10 @@ class BaseFollow:
         for row in follow_list:
             obj = self.build_map_dictFollowing(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("Doesn't have any followers"), 200
+
         return jsonify(result)
 
     def build_attr_dict(self, followingid, followerid):
