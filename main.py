@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+# from flask_cors import CORS
 
 from handler.users import BaseUser
 from handler.messages import BaseMessage
@@ -9,7 +9,7 @@ from handler.blocks import BaseBlock
 
 
 app = Flask(__name__)
-cors = CORS(app)
+# cors = CORS(app)
 
 @app.route('/Pichon/',methods=['GET'])
 def getApp():
