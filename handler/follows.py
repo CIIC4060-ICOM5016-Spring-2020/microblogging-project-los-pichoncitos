@@ -32,12 +32,12 @@ class BaseFollow:
 
     def build_map_dictFollowed(self, row):
         result = {}
-        result['follower'] = row[0]
+        result['follower uid'] = row[0]
         return result
 
     def build_map_dictFollowing(self, row):
         result = {}
-        result['follows'] = row[0]
+        result['follows uid'] = row[0]
         return result
 
     def addNewFollow(self, json, followingid):

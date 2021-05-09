@@ -52,6 +52,9 @@ class BaseBlock:
         checkBlock = dao.checkBlocked2(blockingid, uid)
         if checkBlock:
             return jsonify("User is already blocked"), 200
+        checkFollow = dao.checkFollow(uid, blockingid)
+        if checkFollow:
+            unfollowed = dao.deleteFollow(uid, blockingid)
         bid = dao.insertBlock(blockingid, uid)
         result = self.build_attr_dict(blockingid, uid)
         return jsonify(result), 201

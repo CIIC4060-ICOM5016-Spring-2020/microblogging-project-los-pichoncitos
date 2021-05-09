@@ -57,3 +57,19 @@ class BlockDAO:
 
         return rows >= 1
 
+    def checkFollow(self, followerid, followingid):
+        cursor = self.conn.cursor()
+        query = "select fid from follows where (followerid= %s and followingid = %s) or (followingid = %s and followerid = %s);"
+        cursor.execute(query, (followerid, followingid,followerid, followingid))
+        rows = cursor.rowcount
+        return rows >= 1
+
+    def deleteFollow(self, followerid, followingid):
+        cursor = self.conn.cursor()
+        query = "delete from follows where (followerid= %s and followingid = %s) or (followingid = %s or followerid = %s);"
+        cursor.execute(query, (followerid, followingid, followerid, followingid))
+        # determine affected rows
+        affected_rows = cursor.rowcount
+        self.conn.commit()
+        return affected_rows != 0
+
