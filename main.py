@@ -66,7 +66,7 @@ def handle_getFollowedBy(rid):
 
 #Get users following a specific user
 @app.route('/Pichon/follows/<int:uid>', methods=['GET'])
-def handle_getFollows(uid):
+def handle_getFollows(rid):
     if request.method == 'GET':
         return BaseFollow().getFollowedBy(rid)
     else:
