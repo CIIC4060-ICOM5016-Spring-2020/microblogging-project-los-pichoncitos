@@ -14,17 +14,24 @@ class MessageDAO:
         result = []
         for row in cursor:
             result.append(row)
+        return result
+
+    def getAllReplies(self):
         cursor = self.conn.cursor()
         query = "select mid, message, uid, replyingto from messages where isShare = False and isReply = True;"
         cursor.execute(query)
+        result = []
         for row in cursor:
             result.append(row)
+        return result
+
+    def getAllShares(self):
         cursor = self.conn.cursor()
         query = "select mid, uid, sharing from messages where isShare = True and isReply = False;"
         cursor.execute(query)
+        result = []
         for row in cursor:
             result.append(row)
-
         return result
 
     def getMessagebyId(self, mid):

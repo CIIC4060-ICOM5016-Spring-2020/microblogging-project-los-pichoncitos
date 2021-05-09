@@ -10,6 +10,15 @@ class BaseMessage:
         for row in message_list:
             obj = self.build_map_dict(row)
             result.append(obj)
+        message_list = dao.getAllReplies()
+        for row in message_list:
+            obj = self.build_map_dict_reply(row)
+            result.append(obj)
+        message_list = dao.getAllShares()
+        for row in message_list:
+            obj = self.build_map_dict_share(row)
+            result.append(obj)
+
         return jsonify(result)
 
     def build_attr_dict(self, mid, message, uid):
