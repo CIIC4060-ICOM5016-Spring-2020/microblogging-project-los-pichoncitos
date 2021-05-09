@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
-#from flask_cors import CORS
+from flask_cors import CORS
 
-from handler.reply import BaseReply
-from handler.shares import BaseShare
 from handler.users import BaseUser
 from handler.messages import BaseMessage
 from handler.follows import BaseFollow
@@ -11,12 +9,14 @@ from handler.blocks import BaseBlock
 
 
 app = Flask(__name__)
-#cors = CORS(app)
+cors = CORS(app)
 
-@app.route('/Pichon',methods=['GET'])
+@app.route('/Pichon/',methods=['GET'])
 def getApp():
     if request.method == 'GET':
-        return "Hello"
+        return "ICOM5016/CIIC4060 \n " \
+               "Database Project Application: Pichon \n" \
+               "Group: Los pichoncitos (Jean Rivera, Emmanuel Nieves, Andrea Miranda, Carlos Santiago"
     else:
         return jsonify("Method not Allowed"), 405
 
@@ -125,22 +125,18 @@ def handle_getMessage():
         return jsonify("Method not Allowed"),405
 
 #Reply message
-@app.route('/Pichon/reply', methods=['POST','GET'])
+@app.route('/Pichon/reply', methods=['POST'])
 def handle_replyMessage():
     if request.method == 'POST':
         return BaseMessage().addNewReply(request.json)
-    elif request.method == 'GET':
-        return BaseReply().getAllReply()
     else:
         return jsonify("Method not Allowed"),405
 
 #Share message
-@app.route('/Pichon/share', methods=['POST','GET'])
+@app.route('/Pichon/share', methods=['POST'])
 def handle_shareMessage():
     if request.method == 'POST':
         return BaseMessage().addNewShare(request.json)
-    elif request.method == 'GET':
-        return BaseShare().getAllShares()
     else:
         return jsonify("Method not Allowed"),405
 
