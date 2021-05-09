@@ -55,7 +55,7 @@ class ReactDAO:
         cursor = self.conn.cursor()
         query = "select uid from messages where mid = %s;"
         cursor.execute(query, (mid,))
-        id = cursor.fetchone()[0]
+        id = cursor.fetchone()
         query = "select bid from blocks where (uid = %s and blockingid = %s) or (blockingid = %s and uid = %s);"
         cursor.execute(query, (uid, id, uid, id))
         rows = cursor.rowcount
@@ -65,7 +65,7 @@ class ReactDAO:
 
     def checkLike(self, uid, mid):
         cursor = self.conn.cursor()
-        query = "select reid from reacts where uid = %s and mid = %s and  isLiked = True;"
+        query = "select reid from reacts where   = %s and mid = %s and isLiked = True;"
         cursor.execute(query, (uid, mid))
         rows = cursor.rowcount
         # if affected rows == 0, the part was not found and hence not deleted

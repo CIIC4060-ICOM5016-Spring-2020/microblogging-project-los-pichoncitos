@@ -128,7 +128,7 @@ def handle_getMessage():
 @app.route('/Pichon/reply', methods=['POST','GET'])
 def handle_replyMessage():
     if request.method == 'POST':
-        return BaseReply().addNewReply(request.json)
+        return BaseMessage().addNewReply(request.json)
     elif request.method == 'GET':
         return BaseReply().getAllReply()
     else:
@@ -138,7 +138,7 @@ def handle_replyMessage():
 @app.route('/Pichon/share', methods=['POST','GET'])
 def handle_shareMessage():
     if request.method == 'POST':
-        return BaseShare().addNewShare(request.json)
+        return BaseMessage().addNewShare(request.json)
     elif request.method == 'GET':
         return BaseShare().getAllShares()
     else:

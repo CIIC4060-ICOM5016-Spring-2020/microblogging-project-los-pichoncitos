@@ -15,10 +15,10 @@ class SharesDAO:
             result.append(row)
         return result
 
-    def insertShare(self, uid, mid):
+    def insertShare(self, uid, mid, isShare, isReply):
         cursor = self.conn.cursor()
-        query = "insert into shares (uid,mid) values (%s,%s) returning sid; "
-        cursor.execute(query, (uid, mid))
+        query = "insert into shares (uid,sharing,isShare,isReply) values (%s,%s,%s,%s) returning sid; "
+        cursor.execute(query, (uid, mid, isShare, isReply))
         sid = cursor.fetchone()[0]
         self.conn.commit()
         return sid

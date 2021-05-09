@@ -13,18 +13,20 @@ class BaseReply:
             result.append(obj)
         return jsonify(result)
 
-    def build_attr_dict(self, rmessage, uid, mid):
+    def build_attr_dict_reply(self, mid, message, uid, rid):
         result = {}
+        result['ID'] = mid
         result['RegisteredUser'] = uid
-        result['Text'] = rmessage
-        result['replyingto'] = mid
+        result['Text'] = message
+        result['replyingto'] = rid
         return result
 
-    def build_map_dict(self, row):
+    def build_map_dict_reply(self, row):
         result = {}
-        result['RegisteredUser'] = row[0]
-        result['Text'] = row[1]
-        result['replyingto'] = row[2]
+        result['ID'] = row[0]
+        result['RegisteredUser'] = row[1]
+        result['Text'] = row[2]
+        result['replyingto'] = row[3]
         return result
 
     def addNewReply(self, json):
