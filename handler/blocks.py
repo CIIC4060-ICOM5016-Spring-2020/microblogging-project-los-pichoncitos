@@ -33,14 +33,14 @@ class BaseBlock:
         result = {}
         # result['fid'] = row[0]
         # result['uid'] = row[0]
-        result['blockedBy'] = row[0]
+        result['blocking user'] = row[0]
         return result
 
     def build_map_dictBlocking(self, row):
         result = {}
         # result['fid'] = row[0]
         # result['rid'] = row[0]
-        result['blocking'] = row[0]
+        result['blocked by user'] = row[0]
         return result
 
     def addNewBlock(self, json, blockingid):
