@@ -60,7 +60,7 @@ def handle_getFollow(rid):
 @app.route('/Pichon/followedby/<int:rid>', methods=['GET'])
 def handle_getFollowedBy(rid):
     if request.method == 'GET':
-        return BaseFollow().getFollowedBy(rid)
+        return BaseFollow().getFollowing(rid)
     else:
         return jsonify("Method not Allowed"),405
 
@@ -68,7 +68,7 @@ def handle_getFollowedBy(rid):
 @app.route('/Pichon/follows/<int:uid>', methods=['GET'])
 def handle_getFollows(uid):
     if request.method == 'GET':
-        return BaseFollow().getFollowing(uid)
+        return BaseFollow().getFollowedBy(rid)
     else:
         return jsonify("Method not Allowed"),405
 

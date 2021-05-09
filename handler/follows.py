@@ -26,7 +26,7 @@ class BaseFollow:
 
     def build_attr_dict(self, followingid, followerid):
         result = {}
-        result['follower'] = followerid
+        result['following'] = followerid
         result['RegisteredUser'] = followingid
         return result
 
