@@ -15,8 +15,7 @@ class BaseFollow:
             result.append(obj)
 
         if len(result) == 0:
-            return jsonify("Doesn't follow other users"), 404
-
+            return jsonify("Doesn't have any followers"), 404
         return jsonify(result)
 
     def getFollowing(self,followerid):
@@ -28,7 +27,7 @@ class BaseFollow:
             result.append(obj)
 
         if len(result) == 0:
-            return jsonify("Doesn't have any followers"), 200
+            return jsonify("Doesn't follow other users"), 200
 
         return jsonify(result)
 

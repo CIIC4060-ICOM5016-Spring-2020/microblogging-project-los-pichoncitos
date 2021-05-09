@@ -23,6 +23,9 @@ class BaseReact:
         for row in follow_list:
             obj = self.build_map_dict(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("The message has 0 likes"), 404
         return jsonify(result)
 
     def getUnlikesById(self, mid):
@@ -32,6 +35,9 @@ class BaseReact:
         for row in follow_list:
             obj = self.build_map_dict(row)
             result.append(obj)
+
+        if len(result) == 0:
+            return jsonify("The message has 0 unlikes"), 404
         return jsonify(result)
 
     def insertLike(self, json, mid):
