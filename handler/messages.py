@@ -93,17 +93,23 @@ class BaseMessage:
         isShare = False
         isReply = True
         dao = MessageDAO()
+        checkBlock = dao.checkBlocked(uid, rid)
+        if checkBlock:
+            return jsonify("BLOCKED, can't share message"), 200
         mid = dao.insertReply(message, uid, rid, isShare, isReply)
         result = self.build_attr_dict_reply(mid, message, uid, rid)
         return jsonify(result), 201
 
     def addNewShare(self, json):
         uid = json['RegisteredUser']
-        mid = json['sharing']
+        sid = json['sharing']
         isShare = True
         isReply = False
         dao = MessageDAO()
-        id = dao.insertShare(uid, mid, isShare, isReply)
-        result = self.build_attr_dict(id,uid,mid)
+        checkBlock = dao.checkBlocked(uid, sid)
+        if checkBlock:
+            return jsonify("BLOCKED, can't share message"), 200
+        id = dao.insertShare(uid, sid, isShare, isReply)
+        result = self.build_attr_dict_share(id,uid,sid)
         return jsonify(result), 201
 
