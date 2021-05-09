@@ -40,7 +40,7 @@ def handle_getUserbyId(uid):
     if request.method == 'GET':
         return BaseUser().getUserbyId(uid)
     elif  request.method == 'PUT':
-        return BaseUser().updateUser(request.json)
+        return BaseUser().updateUser(uid, request.json)
     elif request.method == 'DELETE':
         return BaseUser().deleteUser(uid)
     else:

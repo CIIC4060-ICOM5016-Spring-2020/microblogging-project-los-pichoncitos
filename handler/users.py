@@ -63,13 +63,12 @@ class BaseUser:
         result = self.build_attr_dict(uid, first_name, last_name, email, username,  password)
         return jsonify(result), 201
 
-    def updateUser(self, json):
+    def updateUser(self, uid, json):
         first_name = json['first_name']
         last_name = json['last_name']
         email = json['email']
         username = json['username']
         password = json['password']
-        uid = json['uid']
         dao = UserDAO()
         updated_code = dao.updateUser(uid, first_name, last_name, email, username, password)
         result = self.build_attr_dict(uid, first_name, last_name, email, username, password)
