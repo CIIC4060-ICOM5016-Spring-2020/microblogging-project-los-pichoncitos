@@ -66,7 +66,7 @@ class MessageDAO:
 
     def insertShare(self, uid, sharing, isShare, isReply):
         cursor = self.conn.cursor()
-        query = "insert into shares (uid,sharing,isShare,isReply) values (%s,%s,%s,%s) returning mid; "
+        query = "insert into messages (uid,sharing,isShare,isReply) values (%s,%s,%s,%s) returning mid; "
         cursor.execute(query, (uid, sharing, isShare, isReply))
         mid = cursor.fetchone()[0]
         self.conn.commit()

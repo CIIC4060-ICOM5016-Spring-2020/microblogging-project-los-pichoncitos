@@ -63,8 +63,8 @@ class BaseMessage:
         if not user_tuple:
             return jsonify("Not Found"), 404
 
-        isShare = dao.isShare()
-        isReply = dao.isReply()
+        isShare = dao.isShare(id)
+        isReply = dao.isReply(id)
 
         if isShare == False and isReply == False:
             result = self.build_map_dict(user_tuple)
