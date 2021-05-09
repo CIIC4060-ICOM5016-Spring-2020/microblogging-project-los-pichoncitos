@@ -61,7 +61,7 @@ class BaseReact:
         checkUnlike = dao.checkUnlike(uid, mid)
         if checkUnlike:
             return jsonify("Already unliked"), 200
-        checkLike = dao.checkLike(uid,mid)
+        checkLike = dao.checkLike(uid, mid)
         if checkLike:
             dao.deleteLike(uid, mid)
         reid = dao.insertReact(uid, mid, isLiked)
