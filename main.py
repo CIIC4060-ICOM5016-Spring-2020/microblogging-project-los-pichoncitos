@@ -65,7 +65,7 @@ def handle_getFollowedBy(rid):
         return jsonify("Method not Allowed"),405
 
 #Get users following a specific user
-@app.route('/Pichon/follows/<int:uid>', methods=['GET'])
+@app.route('/Pichon/follows/<int:rid>', methods=['GET'])
 def handle_getFollows(rid):
     if request.method == 'GET':
         return BaseFollow().getFollowedBy(rid)
