@@ -41,7 +41,7 @@ class UserDAO:
     def deleteUser(self, uid):
         cursor = self.conn.cursor()
         query = "delete from users where uid=%s;"
-        cursor.execute(query, (uid,))
+        cursor.execute(query, (uid))
         # determine affected rows
         affected_rows = cursor.rowcount
         self.conn.commit()
